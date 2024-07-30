@@ -1,0 +1,616 @@
+:root {
+    --base-background-color: #393e46;
+    --base-text-color: #f3b219;
+}
+html, body {
+    width: 100%;
+    height: 100%;
+	overflow: hidden;
+}
+body {
+    margin: 0;
+    /* prevent pull-to-refresh for Chrome 63+ */
+    overscroll-behavior-y: none;
+}
+uni-page-body {
+    height: 100%;
+    background-color: var(--base-background-color);
+}
+/* prevent pull-to-refresh for Safari 16+ */
+@media screen and (pointer: coarse) {
+    @supports (-webkit-backdrop-filter: blur(1px)) and (overscroll-behavior-y: none)  {
+        html {
+            overscroll-behavior-y: none;
+        }
+    }
+}
+/* prevent pull-to-refresh for Safari 9~15 */
+@media screen and (pointer: coarse) {
+    @supports (-webkit-backdrop-filter: blur(1px)) and (not (overscroll-behavior-y: none))  {
+        html {
+            overflow: hidden;
+        }
+        body {
+            max-height: 100%;
+            overflow: auto;
+        }
+        /* in this case to disable pinch-zoom, set `touch-action: pan-x pan-y;` on `body` instead of `html` */
+    }
+}
+
+/* * {
+    -webkit-touch-callout: none;
+    -webkit-user-select:none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none; 
+    user-select: none;
+} */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    background-color: var(--base-background-color);
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px var(--base-background-color);
+    border-radius: 10px;
+    background-color: var(--base-background-color);
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.1);
+    background-color: rgba(255, 255, 255, 0.5)
+}
+
+.el-drawer {
+    transition: all .2s!important;
+}
+.el-drawer__body {
+    background-color: #f5f5f5!important;
+    padding: 0!important;
+}
+.el-tabs__nav-wrap .el-tabs__nav {
+    margin-left: 12px;
+}
+.el-tabs__nav-wrap.is-scrollable .el-tabs__nav {
+    margin-left: 0;
+}
+
+#app {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+.app-main {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* iframe {
+    width: 500px; 
+    height: 500px; 
+    max-width: 100%; 
+    border: none; 
+    overflow: hidden;
+    display: block;
+    margin: 0 auto;
+    margin-left: 0!important;
+} */
+
+canvas {
+    position: absolute;
+}
+#canvas1 {
+	position: absolute;
+}
+.close-btn {
+    width: 32px;
+    height: 32px;
+    background: url('//mobbbb.top/resource/destiny-child/images/icon/close-icon.png');
+    background-size: 100% 100%;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    cursor: pointer;
+    z-index: 100;
+}
+.select-wrap {
+    position: absolute;
+    width: 200px;
+    left: 16px;
+    top: 16px;
+    transition: all linear .1s;
+    z-index: 10;
+}
+.full-screen-btn {
+    width: 32px;
+    height: 32px;
+    background: url('//mobbbb.top/resource/destiny-child/images/icon/full-screen-icon.png');
+    background-size: 100% 100%;
+    position: absolute;
+    top: 54px;
+    right: 16px;
+    cursor: pointer;
+    transition: all linear .1s;
+    z-index: 10;
+}
+.config-set-btn {
+    cursor: pointer;
+    position: absolute!important;
+    bottom: 12px;
+    right: 16px;
+    color: #fff!important;
+    transition: all linear .1s;
+    z-index: 10;
+}
+.version {
+    position: absolute;
+    right: 14px;
+    bottom: 10px;
+    color: white;
+    font-size: 12px;
+    transition: all linear .1s;
+    z-index: 10;
+}
+.el-popover.el-popper.tips-popper {
+    padding: 6px;
+}
+.tips-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: white;
+}   
+.iframe-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9;
+}
+.canvas-bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 8;
+}
+.canvas-bg-cover {
+    background-size: cover;
+    background-position: center center;
+}
+.canvas-bg-512 {
+    animation: animation512 linear 30s infinite;
+    width: calc(100% + 512px);
+    height: calc(100% + 512px);
+}
+@keyframes animation512 {
+    0% {
+        left: 0;
+        top: 0;
+    }
+  
+    100% {
+        left: -512px;
+        top: -512px;
+    }
+}
+.canvas-bg-256 {
+    animation: animation256 linear 20s infinite;
+    width: calc(100% + 256px);
+    height: calc(100% + 256px);
+}
+@keyframes animation256 {
+    0% {
+        left: 0;
+        top: 0;
+    }
+  
+    100% {
+        left: -256px;
+        top: -256px;
+    }
+}
+.canvas-bg-128 {
+    animation: animation128 linear 10s infinite;
+    width: calc(100% + 128px);
+    height: calc(100% + 128px);
+}
+@keyframes animation128 {
+    0% {
+        left: 0;
+        top: 0;
+    }
+  
+    100% {
+        left: -128px;
+        top: -128px;
+    }
+}
+.loading {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0 , 0, 0.45);
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+}
+ 
+.loading img {
+    width: 52px;
+    height: 52px;
+    animation: loading linear 1s infinite;
+}
+
+.block-dom {
+    width: 68px;
+    height: 68px;
+    padding-left: 8px;
+}
+.avatar-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-left: 8px;
+}
+.avatar-item-wrap {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    text-align: center;
+    margin: 0 8px 8px 0;
+    cursor: pointer;
+    position: relative;
+}
+.avatar-item-wrap .avatar-img {
+    display: block;
+    width: 68px;
+    height: 68px;
+}
+.avatar-item-wrap .others-img {
+    width: 58px;
+    border: 2px solid white;
+    border-radius: 16px;
+    box-shadow: 1px 1px 3px rgba(0, 0 , 0, 0.85);
+    margin-bottom: 4px;
+    margin-top: 3px;
+}
+.avatar-item-wrap .default-img {
+    background: #444c56;
+}
+.avatar-item-wrap span {
+    display: block;
+    width: 68px;
+    color: #fff;
+}
+
+.content-wrap {
+    height: 100%;
+    box-sizing: border-box;
+    overflow: auto;
+}
+.content-block { 
+    height: 64px;
+}
+.footer-tab {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    height: 64px;
+    justify-content: center;
+    background: #393e46;
+    width: 100%;
+}
+.footer-tab-item {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    color: var(--base-text-color);
+    font-weight: bold;
+    text-align: center;
+    width: 40px;
+    margin: 0 12px;
+    cursor: pointer;
+    position: relative;
+}
+.footer-tab-item.selected {
+    color: white;
+}
+.footer-tab-item.selected::before {
+    content: '';
+    height: 100%;
+    width: calc(100% + 24px);
+    position: absolute;
+    left: -12px;
+    top: 0;
+    z-index: -1;
+    background: linear-gradient(0deg, rgba(255,205,0,1) 0%, rgba(255,205,0,0.3) 40%, rgba(255,205,0,0) 70%);
+}
+.footer-tab-item img {
+    width: 40px;
+    height: 40px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.attr-tab .el-tabs__item, .dolls-star-tab .el-tabs__item {
+    position: relative;
+    transition: all ease .2s;
+    color: var(--base-text-color);
+    font-weight: bold;
+}
+.attr-tab .el-tabs__item.is-active, .dolls-star-tab .el-tabs__item.is-active {
+    color: white;
+    background: linear-gradient(0deg, rgba(255,205,0,1) 0%, rgba(255,205,0,0.3) 40%, rgba(255,205,0,0) 95%);
+}
+.attr-tab .el-tabs__item:hover, .dolls-star-tab .el-tabs__item:hover {
+    color: white;
+}
+.el-tabs__active-bar {
+    background-color: transparent!important;
+}
+.el-tabs__nav-wrap::after {
+    background-color: var(--base-background-color)!important;
+    border-bottom: 2px dashed var(--base-text-color);
+    left: 8px!important;
+    right: 8px!important;
+    width: unset!important;
+    z-index: 5!important;
+}
+.dolls-star-tab .el-tabs__item {
+    padding-left: 20px!important;
+}
+.mobile-dolls-star-tab .el-tabs__item {
+    padding-left: 15px!important;
+    padding-right: 14px!important;
+}
+.attr-tab .el-tabs__item {
+    padding-left: 35px!important;
+}
+.attr-tab .el-tabs__item:last-of-type, .dolls-star-tab .el-tabs__item:last-of-type {
+    padding-right: 20px!important;
+}
+.mobile-dolls-star-tab .el-tabs__item:last-of-type {
+    padding: 0 14px 0 15px!important;
+}
+.attr-tab .el-tabs__item:before {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    left: 9px;
+    top: 8px;
+    background: url('//mobbbb.top/resource/destiny-child/images/icon/attributes.webp');
+}
+.types-tab .el-tabs__item:before {
+    background: url('//mobbbb.top/resource/destiny-child/images/icon/types.webp');
+}
+.attr-tab .el-tabs__item:nth-of-type(2):before {
+    background-position: 0 25px;
+}
+.attr-tab .el-tabs__item:nth-of-type(3):before {
+    background-position: 0 75px;
+}
+.attr-tab .el-tabs__item:nth-of-type(4):before {
+    background-position: 0 100px;
+}
+.attr-tab .el-tabs__item:nth-of-type(5):before {
+    background-position: 0 125px;
+}
+.attr-tab .el-tabs__item:nth-of-type(6):before {
+    background-position: 0 50px;
+}
+
+.star-tab .el-tabs__item {
+    position: relative;
+    color: transparent!important;
+}
+.star-tab .el-tabs__item.is-active {
+    background: linear-gradient(0deg, rgba(255,205,0,1) 0%, rgba(255,205,0,0.3) 40%, rgba(255,205,0,0) 70%);
+}
+.star-tab .el-tabs__item:last-of-type.is-active {
+    color: white!important;
+}
+.star-tab .el-tabs__item:before {
+    content: '';
+    position: absolute;
+    width: 125px;
+    height: 25px;
+    left: 20px;
+    top: 8px;
+    background: url('//mobbbb.top/resource/destiny-child/images/icon/stars.webp');
+}
+.star-tab .el-tabs__item:nth-of-type(2):before {
+    left: 10px;
+    background-position: 0 24px;
+}
+.star-tab .el-tabs__item:nth-of-type(3):before {
+    background-position: 0 50px;
+}
+.star-tab .el-tabs__item:nth-of-type(4):before {
+    background-position: 0 75px;
+}
+.star-tab .el-tabs__item:nth-of-type(5):before {
+    background-position: 0 100px;
+}
+.star-tab .el-tabs__item:nth-of-type(6):before {
+    background-position: 0 125px;
+}
+.star-tab .el-tabs__item:last-of-type {
+    color: #f3b219!important;
+    font-weight: bold;
+    padding: 0 20px!important;
+}
+.star-tab .el-tabs__item:last-of-type:before {
+    background: none;
+}
+
+.no-data-text {
+    color: white;
+    text-align: center;
+    width: 100%;
+    padding-top: 24px;
+}
+
+.mobile-star-tab .el-tabs__item {
+    padding: 0 18px 0 0!important;
+}
+.mobile-star-tab .el-tabs__item:nth-of-type(4) {
+    padding: 0 19px 0 0!important;
+}
+.mobile-star-tab .el-tabs__item:nth-of-type(5) {
+    padding: 0 18.5px 0 0!important;
+}
+.mobile-star-tab .el-tabs__item:nth-of-type(6) {
+    padding: 0 18.5px 0 0!important;
+}
+.mobile-star-tab .el-tabs__item:last-of-type {
+    padding: 0 12px 0 12px!important;
+}
+.mobile-star-tab .el-tabs__item:before {
+    width: 25px;
+    left: 23px;
+}
+.mobile-star-tab .el-tabs__item:nth-of-type(2):before {
+    left: 23px;
+}
+.mobile-star-tab .el-tabs__item:nth-of-type(6):before {
+    left: 23px;
+}
+.mobile-star-tab .el-tabs__item:after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    text-align: center;
+    height: 100%;
+    left: 4px;
+    top: 0;
+    color: var(--base-text-color);
+    font-weight: bold;
+    transition: all ease .2s;
+}
+.mobile-star-tab .el-tabs__item.is-active:after {
+    color: white;
+}
+.mobile-star-tab .el-tabs__item:nth-of-type(2):after {
+    content: '5';
+}
+.mobile-star-tab .el-tabs__item:nth-of-type(3):after {
+    content: '4';
+}
+.mobile-star-tab .el-tabs__item:nth-of-type(4):after {
+    content: '3';
+}
+.mobile-star-tab .el-tabs__item:nth-of-type(5):after {
+    content: '2';
+}
+.mobile-star-tab .el-tabs__item:nth-of-type(6):after {
+    content: '1';
+}
+
+.mobile-attr-tab .el-tabs__item:before {
+    left: 3px;
+}
+.mobile-attr-tab .el-tabs__item {
+    padding-left: 29px!important;
+    padding-right: 14px;
+}
+.mobile-attr-tab .el-tabs__item:last-of-type {
+    padding-right: 14px!important;
+}
+ 
+@keyframes loading {
+    0% {
+      transform: rotate(0deg);
+    }
+ 
+    12.4% {
+      transform: rotate(0deg);
+    }
+ 
+    12.5% {
+      transform: rotate(45deg);
+    }
+ 
+    24.9% {
+      transform: rotate(45deg);
+    }
+ 
+    25% {
+      transform: rotate(90deg);
+    }
+ 
+    37.4% {
+      transform: rotate(90deg);
+    }
+ 
+    37.5% {
+      transform: rotate(135deg);
+    }
+ 
+    49.9% {
+      transform: rotate(135deg);
+    }
+ 
+    50% {
+      transform: rotate(180deg);
+    }
+ 
+    62.4% {
+      transform: rotate(180deg);
+    }
+ 
+    62.5% {
+      transform: rotate(225deg);
+    }
+ 
+    74.9% {
+      transform: rotate(225deg);
+    }
+ 
+    75% {
+      transform: rotate(270deg);
+    }
+ 
+    87.4% {
+      transform: rotate(270deg);
+    }
+ 
+    87.5% {
+      transform: rotate(315deg);
+    }
+ 
+    99.9% {
+      transform: rotate(315deg);
+    }
+ 
+    100% {
+      transform: rotate(360deg);
+    }
+}
+
+[data-adapter=webIphoneXAdapter] .footer-tab {
+    padding-bottom: 34px
+}
+
+[data-adapter=webIphoneXAdapter] .content-block {
+    height: 98px;
+}
+
+.segmented-control__text {
+	color: white!important;
+}
+.segmented-control__item--text {
+	color: #f3b219!important;
+}

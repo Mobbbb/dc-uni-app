@@ -1,0 +1,1 @@
+<view class="avatar-item-wrap" bindtap="{{e}}"><image class="{{['avatar-img', a]}}" src="{{b}}"></image><text style="{{d}}">{{c}}</text></view>

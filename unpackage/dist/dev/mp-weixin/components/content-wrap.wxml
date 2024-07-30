@@ -1,0 +1,1 @@
+<view class="content-wrap"><slot name="header"></slot><view class="avatar-wrap"><slot></slot><view wx:for="{{a}}" wx:for-item="item" class="block-dom"></view></view><view class="content-block"></view></view>
