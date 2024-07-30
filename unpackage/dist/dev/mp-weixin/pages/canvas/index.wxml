@@ -1,0 +1,1 @@
+<view><view class="canvas-container" bindtap="{{a}}"></view><view wx:if="{{b}}" class="{{['canvas-bg', c]}}" style="{{'background-image:' + d + ';' + ('background-color:' + e)}}"></view><view wx:if="{{f}}" class="loading"><image src="//mobbbb.top/resource/destiny-child/images/icon/loading.webp"></image></view></view>

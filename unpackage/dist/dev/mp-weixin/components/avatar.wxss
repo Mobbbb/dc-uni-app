@@ -1,0 +1,10 @@
+
+.cache-icon {
+    width: 6px;
+    height: 6px;
+    background: red;
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    border-radius: 50%;
+}
